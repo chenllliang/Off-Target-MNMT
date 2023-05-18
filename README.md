@@ -1,6 +1,6 @@
-#  On the Off-Target Problem of Zero-Shot Multilingual Neural Machine Translation 🗡
+#  On the Off-Target Problem of Zero-Shot Multilingual Neural Machine Translation  🎯
 
-This is a demo code, detailed version is coming soon.
+This is a minimized demo code, detailed version is coming soon.
 
 ---
 
