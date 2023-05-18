@@ -38,4 +38,11 @@ Training and Evaluation scripts will be uploaded soon after cleaning.
 
 If you find the paper helpful, please kindly cite our paper.
 
+@article{Chen2023OnTO,
+  title={On the Off-Target Problem of Zero-Shot Multilingual Neural Machine Translation },
+  author={Liang Chen and Shuming Ma and Dongdong Zhang and Furu Wei and Baobao Chang},
+  journal={ArXiv},
+  year={2023}
+}
+
 
