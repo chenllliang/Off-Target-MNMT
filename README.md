@@ -2,6 +2,8 @@
 
 This is a demo code, detailed version is coming soon.
 
+---
+
 We provide a better vocabulary building method for MNMT.
 
 To generate vocab using Language-Aware Vocabulary Sharing, you need to first prepare a shared vocabulary and the tokenized sentences for each languages.
