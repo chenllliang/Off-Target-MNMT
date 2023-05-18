@@ -1,50 +1,46 @@
-#  On the Off-Target Problem of Zero-Shot Multilingual Neural Machine Translation  🎯
+# On the Off-Target Problem of Zero-Shot Multilingual Neural Machine Translation 🎯
 
-This is a fast implementation for LAVS algorithm in the paper.
+This repository provides a fast implementation of the LAVS algorithm described in the paper.
 
 ---
 
-LAVS provides a better vocabulary building method for MNMT.
-
-`LAVS.py` first computes the language-specific tokens according to the tokenized corpus and original sharing vocab. The number of language-specific tokens can be controlled by the `LAVS_THRES` threshold parameter.
-
-After computing, it generates the LAVS vocab and conducts the LAVS tokenization on the original tokenized corpus. 
+LAVS offers an improved vocabulary building method for MNMT (Multilingual Neural Machine Translation).
 
 ## Language-Aware Vocabulary Sharing
 
-1. prepare the original shared vocabulary (same format as `example_corpus/shared_vocab.txt`)
-2. prepare the tokenized **training** corpus of MNMT (same format as `example_corpus/opus_dev_tokenized`, we use dev data here for storage convinence)
-3. `python ./LAVS/LAVS.py` , change the LAVS_THRES parameter in the script to control the number of langauge-specific token. Larger LAVS_THRES means less langauge-specific token.
-4. The new vocab is saved at `./lavs_vocab.txt` and the lavs-tokenzied training corpus is saved at `lavs_tokenized_corpus`
+To use the `LAVS.py` script, follow these steps:
 
-You may need to slightly modify the `LAVS.py` file if the naming of your data is different.
+1. Prepare the original shared vocabulary file (same format as `example_corpus/shared_vocab.txt`).
+2. Prepare the tokenized **training** corpus for MNMT (same format as `example_corpus/opus_dev_tokenized`). In this example, dev data is used for storage convenience.
+3. Run `python ./LAVS/LAVS.py` and adjust the `LAVS_THRES` parameter in the script to control the number of language-specific tokens. A larger `LAVS_THRES` value means fewer language-specific tokens.
+4. The new vocabulary will be saved at `./lavs_vocab.txt`, and the LAVS-tokenized training corpus will be saved at `./lavs_tokenized_corpus`.
 
-After LAVS tokenization, some language-specific tokens would be added. For example "to" -> "to_en". You can use the new vocab and lavs-tokenized files to train the multilingual model.
+Please note that if the naming conventions of your data are different, you may need to modify the `LAVS.py` file accordingly.
+
+After LAVS tokenization, some language-specific tokens will be added. For example, "to" could be transformed into "to_en" for English, "to_de" for German. You can use the new vocabulary and LAVS-tokenized files to train the multilingual model.
 
 
 ## Training and Evaluation
 
-With the LAVS vocab and the result of LAVS tokenization, the rest Mutilingual NMT training follows the example from [fairseq](https://github.com/facebookresearch/fairseq/tree/main/examples/multilingual). 
+To train the multilingual NMT model using the LAVS vocabulary and the LAVS tokenization results, simply follow the example provided in [fairseq](https://github.com/facebookresearch/fairseq/tree/main/examples/multilingual) and train the transformer from scratch.
 
-The only different in evaluation is that you need to remove the langauge tag in each decoded token before running detokenization. You can simply do it by running :
+The only difference in evaluation is that you need to remove the language tag from each decoded token before running detokenization. You can achieve this by running the following command:
 
-`sed 's/_..//g' <lavs_tokenized_file> > <normal_tokenized_file>`
+```bash
+sed 's/_..//g' <lavs_tokenized_file> > <normal_tokenized_file>
+```
 
-
-Training and Evaluation scripts will be uploaded soon after cleaning.  
-
+Training and evaluation scripts will be uploaded soon after cleaning.
 
 ## Citation
 
-If you find the paper helpful, please kindly cite our paper.
+If you find the paper helpful, please kindly cite it:
 
 ```bib
 @article{Chen2023OnTO,
-  title={On the Off-Target Problem of Zero-Shot Multilingual Neural Machine Translation },
+  title={On the Off-Target Problem of Zero-Shot Multilingual Neural Machine Translation},
   author={Liang Chen and Shuming Ma and Dongdong Zhang and Furu Wei and Baobao Chang},
   journal={ArXiv},
   year={2023}
 }
 ```
-
-
